@@ -48,40 +48,11 @@ class User(Entity):
 if __name__ == "__main__":
 
     Entity.db = psycopg2.connect("dbname='orm' user='orm' host='127.0.0.1' password='orm'")
-    # Article.all()
-    # print(Article.__dict__)
-    # print(Article.__name__)
 
     for article in Article.all():
-        # print(article._Entity__fields)
         print(str(article.id) + '  ' + article.title + '  ' + article.content)
-        # print(article._fields)
-        # print( "  " + article.title + "  " + article.content)
+
     article = Article()
     article.title = 'xxxxxx'
-    # print(article.title)
-    # print(article.__dict__)
-    # print(Article.__dict__)
-    # print(type(article))
     article.content = 'alex is alive!!!'
-    # print(article.content)
-    # print(article.__dict__)
-    # print(Entity.__dict__)
-    # print(article.__dict__)
-    
-    # # print(Article.__dict__)
-    # # print(article.__dict__)
-    # # print(Entity.__dict__)
-    
-    # article.title = 'Another article'
-    # print(Article.__dict__)
-    # print(article.__dict__)
-    # print(article.title)
-    # article.created()
-    # article.ubdated()
-    # print(len(article._Entity__fields))
-    # print(len(article._fields))
-    # article.title = 'Very interesting content with some freakin "quotes"'
-    # article.load()
-    # article.title = 'fff'
     article.save()
