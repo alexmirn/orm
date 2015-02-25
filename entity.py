@@ -78,6 +78,13 @@ class Entity(object):
         self.__execute_query(insert_query, self.__fields.values())
 
     def __load(self):
+        if self.__all_loaded != None:
+            for elem in self.__all_loaded:
+                if self.id == elem.id:
+                    self.__fields = elem.__fields
+                    self.__loaded = True
+                    return
+
         select_query = self.__select_query.format(table = self.__table)
         self.__execute_query(select_query, (self.__id, ))
 
@@ -144,6 +151,8 @@ class Entity(object):
             instance.__loaded = True
             instance.__modified = False
             instance_list.append(instance)
+
+        cls.__all_loaded = instance_list
 
         return instance_list
 
