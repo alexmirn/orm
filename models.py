@@ -53,6 +53,6 @@ if __name__ == "__main__":
         print(str(article.id) + '  ' + article.title + '  ' + article.content)
 
     article = Article()
-    article.title = 'xxxxxx'
+    article.title = 'oooo'
     article.content = 'alex is alive!!!'
     article.save()

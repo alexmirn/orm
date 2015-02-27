@@ -55,14 +55,13 @@ class Entity(object):
             super(Entity, self).__setattr__(name, value)
 
     def __execute_query(self, query, args):
-        if args == None:
-            self.__cursor.execute(query)
-        else:
-            try:
-                self.__cursor.execute(query, args, )
-                Entity.db.commit()
-            except Exception, err:
-                print err
+        try:
+            self.__cursor.execute(query, args, )
+            Entity.db.commit()
+        except psycopg2.Error, err:
+            Entity.db.rollback()
+            print"Error in query:", query
+            print err
 
     def __insert(self):
         if self.__id != None:
@@ -131,7 +130,9 @@ class Entity(object):
         )
         try:
             cursor.execute(list_query)
-        except Exception, err:
+        except psycopg2.Error, err:
+            Entity.db.rollback()
+            print"Error in query:", query
             print err
 
         columns = [column[0] for column in cursor.description]
