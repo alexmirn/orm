@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 # import psycopg2
-<<<<<<< HEAD
 import pprint
 from entity import *
 
@@ -61,54 +60,10 @@ class Tag(Entity):
 #     _parents  = []
 #     _children = {'comments': 'Comment'}
 #     _siblings = {}
-=======
-
-from entity import *
-
-class Article(Entity):
-    _fields = ['title', 'content']
-
-class Section(Entity):
-    _columns  = ['title']
-    _parents  = []
-    _children = {'categories': 'Category'}
-    _siblings = {}
-
-class Category(Entity):
-    _columns  = ['title']
-    _parents  = ['section']
-    _children = {'posts': 'Post'}
-    _siblings = {}
-
-class Post(Entity):
-    _columns  = ['content', 'title']
-    _parents  = ['category']
-    _children = {'comments': 'Comment'}
-    _siblings = {'tags': 'Tag'}
-
-class Comment(Entity):
-    _columns  = ['text']
-    _parents  = ['post', 'user']
-    _children = {}
-    _siblings = {}
-
-class Tag(Entity):
-    _columns  = ['name']
-    _parents  = []
-    _children = {}
-    _siblings = {'posts': 'Post'}
-
-class User(Entity):
-    _columns  = ['name', 'email', 'age']
-    _parents  = []
-    _children = {'comments': 'Comment'}
-    _siblings = {}
->>>>>>> 1766c733a0c2c411e93d7070f2c52c15f4acea2a
 
 
 if __name__ == "__main__":
 
-<<<<<<< HEAD
     Entity.db = psycopg2.connect("dbname='g2' user='g2' host='127.0.0.1' password='g2'")
     # Entity.db = psycopg2.connect("dbname='o2' user='o2' host='127.0.0.1' password='o2'")
 
@@ -233,14 +188,3 @@ def do_post(environ, request_body_size):
             get_spam = environ_dict['Получать спам'][0]
         return html_post.format(name, sex, education, comment, get_spam)
     return "Hello python!"
-=======
-    Entity.db = psycopg2.connect("dbname='orm' user='orm' host='127.0.0.1' password='orm'")
-
-    for article in Article.all():
-        print(str(article.id) + '  ' + article.title + '  ' + article.content)
-
-    article = Article()
-    article.title = 'oooo'
-    article.content = 'alex is alive!!!'
-    article.save()
->>>>>>> 1766c733a0c2c411e93d7070f2c52c15f4acea2a
